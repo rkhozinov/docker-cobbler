@@ -1,4 +1,4 @@
-FROM ubuntu:14.04.1
+FROM ubuntu:14.04.3
 
 RUN apt-get update
 RUN apt-get install -y cobbler cobbler-web
