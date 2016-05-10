@@ -1,0 +1,27 @@
+cobbler:
+  build: cobbler/ 
+  expose:
+    - 8000
+    - 25151
+    - 69/udp
+    - 80
+    - 443
+  links:
+    - dhcpd
+
+dhcpd:
+  build: dhcpd/
+  entrypoint: /entrypoint.sh  
+  volumes:
+    - data:/data
+  expose:
+    - 67
+    - 67/udp
+    - 547
+    - 547/udp
+    - 647
+    - 647/udp
+    - 847
+    - 847/udp
+
+
