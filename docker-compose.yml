@@ -6,6 +6,13 @@ cobbler:
     - 69/udp
     - 80
     - 443
+  volumes:
+     - ./etc/cobbler/settings:/etc/cobbler/settings 
+     - ./etc/cobbler/dhcp.template:/etc/cobbler/dhcp.template 
+     - ./var/www/cobbler/images:/var/www/cobbler/images \
+     - ./var/www/cobbler/ks_mirror:/var/www/cobbler/ks_mirror 
+     - ./var/www/cobbler/links:/var/www/cobbler/links 
+     - ./var/lib/cobbler/config:/var/lib/cobbler/config 
   links:
     - dhcpd
 
@@ -13,7 +20,7 @@ dhcpd:
   build: dhcpd/
   entrypoint: /entrypoint.sh  
   volumes:
-    - data:/data
+    - /etc/dhcpd/:/data
   expose:
     - 67
     - 67/udp
