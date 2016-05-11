@@ -1,0 +1,21 @@
+version : '2'
+services:
+  cobbler:
+    build: .
+    privileged: true
+    network_mode: "host"
+    volumes:
+     - ./sys/fs/cgroup:/sys/fs/cgroup:ro 
+     - ./etc/cobbler/settings:/etc/cobbler/settings 
+     - ./etc/cobbler/dhcp.template:/etc/cobbler/dhcp.template 
+     - ./var/www/cobbler/images:/var/www/cobbler/images \
+     - ./var/www/cobbler/ks_mirror:/var/www/cobbler/ks_mirror 
+     - ./var/www/cobbler/links:/var/www/cobbler/links 
+     - ./var/lib/cobbler/config:/var/lib/cobbler/config 
+     - ./var/lib/tftpboot:/var/lib/tftpboot 
+     - ./dist/centos:/mnt:ro
+    ports:
+     - "69:69" 
+     - "80:80" 
+     - "443:443" 
+     - "25151:25151" 
